@@ -204,22 +204,6 @@
       .hero-pills{flex-direction:column;align-items:center;}
       .now-grid{grid-template-columns:1fr 1fr;}
     }
-
-    /* ── MEDIA SECTION ── */
-    .media-sec{padding:28px 20px;background:#eef0ff;border-bottom:3px solid var(--cream3);}
-    .media-tag{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--coral);margin-bottom:8px;}
-    .media-head{font-family:'Fraunces',serif;font-size:clamp(1.4rem,4vw,2rem);font-weight:700;color:var(--teal);margin-bottom:6px;line-height:1.2;}
-    .media-sub{font-size:.84rem;color:var(--text3);margin-bottom:20px;}
-    .videos-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
-    .video-slot{aspect-ratio:9/16;background:var(--white);border-radius:14px;overflow:hidden;border:2px dashed var(--cream3);position:relative;}
-    .video-slot iframe{width:100%;height:100%;border:none;border-radius:12px;}
-    .video-slot-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--text3);font-size:.78rem;font-weight:600;text-align:center;padding:12px;background:linear-gradient(135deg,var(--cream),var(--cream2));}
-    .video-slot-ph span{font-size:1.6rem;}
-    .photos-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-    .photo-slot{aspect-ratio:4/3;background:var(--white);border-radius:14px;overflow:hidden;border:2px dashed var(--cream3);}
-    .photo-slot img{width:100%;height:100%;object-fit:cover;display:block;}
-    .photo-slot-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--text3);font-size:.78rem;font-weight:600;text-align:center;padding:12px;background:linear-gradient(135deg,var(--cream),var(--cream2));}
-    .photo-slot-ph span{font-size:1.6rem;}
   </style>
 </head>
 <body>
@@ -320,35 +304,14 @@
 
 
 
-<!-- MEDIA — VIDEOS + PHOTOS -->
-<section class="media-sec">
-  <div class="media-tag">🎥 Watch & See</div>
-  <h2 class="media-head">Student Stories & Results</h2>
-  <p class="media-sub">Real videos and moments from real students.</p>
-
-  <div class="videos-grid">
-    <div class="video-slot">
-      <!-- CHANGE: paste YouTube embed URL as src e.g. https://www.youtube.com/embed/VIDEO_ID -->
-      <div class="video-slot-ph"><span>▶️</span>Video 1<br/><small>Add YouTube embed URL</small></div>
-    </div>
-    <div class="video-slot">
-      <div class="video-slot-ph"><span>▶️</span>Video 2<br/><small>Add YouTube embed URL</small></div>
-    </div>
-    <div class="video-slot">
-      <div class="video-slot-ph"><span>▶️</span>Video 3<br/><small>Add YouTube embed URL</small></div>
-    </div>
-    <div class="video-slot">
-      <div class="video-slot-ph"><span>▶️</span>Video 4<br/><small>Add YouTube embed URL</small></div>
-    </div>
+<!-- TESTIMONIALS / FEEDBACK -->
+<section class="test-sec">
+  <div class="test-header">
+    <p class="sec-label">Student Results</p>
+    <h2 class="sec-h">Real <em>Proof</em></h2>
   </div>
-
-  <div class="photos-grid">
-    <div class="photo-slot">
-      <img src="PHOTO_1_URL" alt="Result" onerror="this.parentElement.innerHTML='<div class=photo-slot-ph><span>📸</span>Add Photo 1</div>'"/>
-    </div>
-    <div class="photo-slot">
-      <img src="PHOTO_2_URL" alt="Result" onerror="this.parentElement.innerHTML='<div class=photo-slot-ph><span>📸</span>Add Photo 2</div>'"/>
-    </div>
+  <div class="marquee-outer">
+    <div class="marquee-inner" id="row1"></div>
   </div>
 </section>
 
@@ -493,6 +456,17 @@
   }
 
 
+
+  // Build testimonials marquee
+  const row1 = document.getElementById('row1');
+  if(row1) {
+    imgs.concat(imgs).forEach(function(src) {
+      const d = document.createElement('div');
+      d.className = 'tcard';
+      d.innerHTML = '<img src="' + src + '" alt="Result" loading="lazy"/>';
+      row1.appendChild(d);
+    });
+  }
 
   function toggleFaq(btn){const item=btn.closest('.faq-item'),isOpen=item.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));if(!isOpen)item.classList.add('open');}
 
